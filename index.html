@@ -129,12 +129,26 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow:
+      0 6px 0 #8a4a30,
+      0 8px 16px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
   }
 
   .btn-primary:hover {
-    background: var(--terra-light);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow:
+      0 9px 0 #8a4a30,
+      0 12px 24px rgba(0,0,0,0.35);
+  }
+
+  .btn-primary:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 3px 0 #8a4a30,
+      0 4px 8px rgba(0,0,0,0.2);
   }
 
   .scroll-hint {
@@ -518,9 +532,35 @@
 
   /* ─── CTA ─── */
   .cta-section {
-    background: var(--terra);
+    background: var(--green);
     text-align: center;
     padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(201,168,76,0.08);
+    pointer-events: none;
+  }
+
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    background: rgba(193,122,90,0.07);
+    pointer-events: none;
   }
 
   .cta-section h2 {
@@ -530,31 +570,49 @@
     color: var(--white);
     line-height: 1.8;
     margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
   }
 
   .cta-section p {
     font-size: 13px;
-    color: rgba(255,255,255,0.75);
+    color: rgba(255,255,255,0.65);
     margin-bottom: 36px;
     font-weight: 300;
+    position: relative;
+    z-index: 1;
   }
 
   .btn-cta {
     display: inline-block;
-    background: var(--white);
-    color: var(--terra);
-    padding: 18px 56px;
+    background: var(--terra);
+    color: var(--white);
+    padding: 20px 56px;
     border-radius: 3px;
     font-size: 14px;
     font-weight: 500;
     letter-spacing: 0.1em;
     text-decoration: none;
     transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow:
+      0 6px 0 #8a4a30,
+      0 8px 16px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 1;
   }
 
   .btn-cta:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    box-shadow:
+      0 9px 0 #8a4a30,
+      0 12px 24px rgba(0,0,0,0.35);
+  }
+
+  .btn-cta:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 3px 0 #8a4a30,
+      0 4px 8px rgba(0,0,0,0.2);
   }
 
   /* ─── FOOTER ─── */
@@ -605,7 +663,7 @@
              border:2px solid rgba(201,168,76,0.5);margin-bottom:20px;">
     -->
     <h1>
-      <em>「異常なし」</em>は、<br>
+      <em style="color:var(--gold);">「異常なし」</em>は、<br>
       ゴールではありません。<br>
       <span style="font-size:0.85em; opacity:0.9;">その不調、体質から見ると<br>答えが変わります。</span>
     </h1>
@@ -737,7 +795,7 @@
   <div class="section-inner">
     <div class="fade-in">
       <p class="section-label">Before You Join</p>
-      <h2 class="section-title">このサービスを<br>ご検討の前に</h2>
+      <h2 class="section-title">このサービスをご検討の前に</h2>
     </div>
     <div class="fade-in" style="background:var(--white); border-radius:6px; padding:32px 28px;">
       <p style="font-size:13px; color:var(--text-mid); line-height:2; margin-bottom:28px; font-weight:300;">
@@ -768,13 +826,6 @@
         <div style="display:flex; gap:14px; align-items:flex-start;">
           <span style="color:var(--terra); font-size:16px; margin-top:2px; min-width:20px;">💡</span>
           <div>
-            <p style="font-size:14px; font-weight:500; color:var(--green); margin-bottom:6px;">月額5,500円のご負担が難しい方</p>
-            <p style="font-size:13px; color:var(--text-mid); line-height:1.8; font-weight:300;">継続することで効果が出るため、無理のない範囲でのご検討をおすすめしています。</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:14px; align-items:flex-start;">
-          <span style="color:var(--terra); font-size:16px; margin-top:2px; min-width:20px;">💡</span>
-          <div>
             <p style="font-size:14px; font-weight:500; color:var(--green); margin-bottom:6px;">医師の診療の代わりを求めている方</p>
             <p style="font-size:13px; color:var(--text-mid); line-height:1.8; font-weight:300;">本サービスは医療行為ではありません。既存の医療と併用する形でのご利用をおすすめしています。</p>
           </div>
@@ -799,23 +850,58 @@
       <h2 class="section-title">料金・サービス内容</h2>
     </div>
     <div class="price-card fade-in">
+
+      <!-- 通常サポートプラン -->
+      <p style="font-size:11px; letter-spacing:0.15em; color:var(--gold); margin-bottom:12px; font-weight:500;">通常サポートプラン</p>
       <div class="price-amount">
         <span class="price-num">5,500</span>
         <span class="price-unit">円 / 月（税込）</span>
       </div>
-      <p class="price-note">継続サポートプラン</p>
+      <p class="price-note">まずは3ヶ月からスタート</p>
       <ul class="price-list">
-        <li>初回60分問診（体質診断・養生指導・漢方薬のご提案）</li>
+        <li>初回60分問診（体質診断・養生指導・漢方のご提案）</li>
         <li>体質診断レポート・資料お渡し</li>
         <li>医師への漢方相談情報提供書作成（必要時）</li>
-        <li>毎月の定期報告＋アドバイス（LINEの報告テンプレートで簡単に送れます）</li>
-        <li>体調変化時の情報提供書再作成・漢方薬見直し</li>
+        <li>毎月の定期体調報告＋アドバイス</li>
+        <li>体調変化時の情報提供書再作成・見直し</li>
         <li>急変時の当日LINEサポート</li>
-        <li>症状が強い場合の受診勧奨</li>
+        <li>症状が強い場合の受診サポート</li>
       </ul>
-      <div class="price-tag">
+      <div class="price-tag" style="margin-bottom:28px;">
         <span class="tag">対面（沖縄県内）</span>
         <span class="tag">オンライン（Zoom）全国対応</span>
+      </div>
+
+      <!-- 卒業（推奨） -->
+      <div style="border-top:1px solid rgba(201,168,76,0.2); padding-top:28px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span style="font-size:11px; letter-spacing:0.15em; color:var(--gold); font-weight:500;">卒業 🌿（推奨）</span>
+        </div>
+        <p style="font-size:13px; color:rgba(255,255,255,0.8); line-height:2; font-weight:300;">
+          体質を理解して、自分で養生できるようになること。それがこのサービスの最終ゴールです。<br>
+          「卒業したけど、また相談したい」そんなときはいつでも戻ってきてください。
+        </p>
+      </div>
+
+      <!-- このサービスのゴールメッセージ -->
+      <div style="border-left:2px solid var(--gold); padding:16px 20px; margin-bottom:28px; background:rgba(201,168,76,0.05);">
+        <p style="font-size:12px; color:rgba(255,255,255,0.7); line-height:2; font-weight:300;">
+          このサービスのゴールは「卒業」です。ずっと続けてもらうことより、自分の体と向き合える方を一人でも増やしたいと思っています。まずは3ヶ月、一緒に試してみませんか？
+        </p>
+      </div>
+
+      <!-- メンテナンスプラン（希望者のみ） -->
+      <div style="border-top:1px solid rgba(201,168,76,0.2); padding-top:28px; margin-bottom:28px;">
+        <p style="font-size:11px; letter-spacing:0.15em; color:rgba(201,168,76,0.6); margin-bottom:12px; font-weight:500;">メンテナンスプラン（LINEでの繋がりを続けたい方へ）</p>
+        <div class="price-amount" style="margin-bottom:8px;">
+          <span class="price-num" style="font-size:32px;">2,200</span>
+          <span class="price-unit">円 / 月（税込）</span>
+        </div>
+        <ul class="price-list">
+          <li>月1回の定期体調報告</li>
+          <li>急変時のLINE相談</li>
+          <li>通常プランへの移行はいつでも可能</li>
+        </ul>
       </div>
       <div style="margin-top:32px; padding-top:28px; border-top:1px solid rgba(255,255,255,0.15);">
         <p style="font-size:11px; letter-spacing:0.15em; color:var(--gold); margin-bottom:16px; font-weight:500;">お申し込みの流れ</p>
@@ -841,7 +927,65 @@
           💬 ご希望の日程・時間帯がない場合は<br>LINEでお気軽にご相談ください
         </p>
         <div style="text-align:center;">
-          <a href="https://liff.line.me/2007784855-rElwoZWk?product_id=19952&type=product-detail&ts=1773578941" class="btn-primary" style="background:var(--terra);">相談を予約する</a>
+          <a href="https://liff.line.me/2007784855-rElwoZWk?product_id=19952&type=product-detail&ts=1773578941" class="btn-primary">相談を予約する</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="background:var(--white); padding:80px 24px;">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">About</p>
+      <h2 class="section-title">とらについて</h2>
+    </div>
+    <div class="fade-in" style="background:var(--beige); border-radius:6px; padding:36px 32px;">
+      <div style="font-size:14px; color:var(--text-dark); line-height:2.2; margin-bottom:36px; padding-bottom:32px; border-bottom:1px solid var(--beige-dark);">
+        <p>このサービスを始めたきっかけは、妻の体調不良でした。</p>
+        <br>
+        <p>生理のたびに激しい腹痛で意識を失うこともありましたが、病院では<span style="color:var(--gold); font-weight:500;">「異常なし」</span>。治療も受けられない状況でした。</p>
+        <br>
+        <p>中医学で体質を見直したところ、冷えの強さ・消化機能の低下・食生活のバランスが関係していることがわかり、漢方薬と食生活の改善を続けることで、少しずつ体調が戻っていきました。</p>
+        <br>
+        <div style="border-left:3px solid var(--terra); padding:16px 20px; background:var(--white); border-radius:0 6px 6px 0; margin:8px 0;">
+          <p style="font-family:'Noto Serif JP',serif; font-size:14px; color:var(--green); line-height:1.9; font-weight:600;">
+            「病院で異常なしと言われても、しんどい人がいる」<br>
+            その経験があるからこそ、同じように悩む方の力になりたいと思い、このサービスを始めました。
+          </p>
+        </div>
+        <br>
+        <p>薬局の窓口では、お薬の説明で精一杯になってしまうことがあります。</p>
+        <br>
+        <p>「本当はもっと話を聞いてほしかった」「自分の体のことをちゃんと理解したかった」——そう感じている方がいることを、薬剤師として働く中でずっと感じてきました。</p>
+        <br>
+        <div style="border-left:3px solid var(--gold); padding:16px 20px; background:var(--white); border-radius:0 6px 6px 0; margin:8px 0;">
+          <p style="font-family:'Noto Serif JP',serif; font-size:14px; color:var(--green); line-height:1.9; font-weight:600;">
+            このサービスは、その「もう少し話したかった」に<br>応えるために作りました。
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:14px;">
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span style="width:32px; height:32px; min-width:32px; background:var(--terra); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">🎓</span>
+          <span style="font-size:13px; color:var(--text-mid); font-weight:300;">薬剤師（国家資格）</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span style="width:32px; height:32px; min-width:32px; background:var(--terra); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">🏥</span>
+          <span style="font-size:13px; color:var(--text-mid); font-weight:300;">急性期病院にて薬剤師として10年勤務</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span style="width:32px; height:32px; min-width:32px; background:var(--terra); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">💊</span>
+          <span style="font-size:13px; color:var(--text-mid); font-weight:300;">調剤薬局にて7年勤務</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span style="width:32px; height:32px; min-width:32px; background:var(--terra); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">🌿</span>
+          <span style="font-size:13px; color:var(--text-mid); font-weight:300;">漢方相談に携わり3年</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:14px;">
+          <span style="width:32px; height:32px; min-width:32px; background:var(--terra); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px;">🤝</span>
+          <span style="font-size:13px; color:var(--text-mid); font-weight:300;">医師と連携したサポート体制</span>
         </div>
       </div>
     </div>
@@ -856,6 +1000,16 @@
       <h2 class="section-title">よくある質問</h2>
     </div>
     <div class="faq-list">
+      <div class="faq-item fade-in">
+        <div class="faq-q">
+          <span class="faq-q-label">Q</span>
+          <span class="faq-q-text">いつまで続ければいいですか？</span>
+        </div>
+        <div class="faq-a">
+          <span class="faq-a-label">A</span>
+          <span class="faq-a-text">目安として3〜6ヶ月をご提案しています。1ヶ月目は体質を知る段階、2〜3ヶ月目から体調の変化を実感される方が多いです。体質が整い、ご自身で養生を続けられるようになったら「卒業」がゴールです。引き続きLINEでの繋がりを希望される方には月額2,200円のメンテナンスプランもご用意しています。「卒業したけどまた相談したい」という場合もいつでも戻ってきてください🌿</span>
+        </div>
+      </div>
       <div class="faq-item fade-in">
         <div class="faq-q">
           <span class="faq-q-label">Q</span>
@@ -883,7 +1037,7 @@
         </div>
         <div class="faq-a">
           <span class="faq-a-label">A</span>
-          <span class="faq-a-text">相談サービスは自由診療のため保険適用外となります。連携医師の判断のもと必要に応じて処方された際に利用いただくことができます。</span>
+          <span class="faq-a-text">相談サービスは自由診療のため保険適用外となります。医師の判断のもと必要に応じて漢方薬が処方された際は利用いただけます。</span>
         </div>
       </div>
       <div class="faq-item fade-in">
